@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import WordGame from "./pages/WordGame";
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import { ROUTES } from "./utils/static";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path={ROUTES.START}
+          element={<Navigate to={ROUTES.GAME} replace />}
+        />
+        <Route path={ROUTES.GAME} element={<WordGame />} />
+        <Route
+          path="*"
+          element={
+            <p>
+              Page not found! Go to <Link to={ROUTES.GAME}>Word Game</Link>
+            </p>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
